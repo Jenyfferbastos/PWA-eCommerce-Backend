@@ -1,6 +1,6 @@
 ## PWA E-commerce Back end
 
-![Logo](src\assets\img\Logo.png)
+![Logo](Logo.png)
 ## Stack Used
 
 - `Programming Language`: Typescript
