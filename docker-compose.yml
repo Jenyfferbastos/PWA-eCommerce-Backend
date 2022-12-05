@@ -1,0 +1,71 @@
+version: '3'
+
+services:
+  base: &base
+    hostname: base
+    image: PWA-eCommerce-Back-end
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+
+  mongo:
+    image: mongo
+    volumes:
+      - ~/mongo:/data/db
+    ports:
+      - '27017:27017'
+
+  app:
+    <<: *base
+    command: /bin/ash -c "npm install --legacy-peer-deps && npm run dev"
+    env_file: .env
+    environment:
+      NODE_PATH: .
+      NODE_ENV: development
+      MONGO_DB_URI: mongodb+srv://jenyffer:jenyffer2003@cluster0.kcy4mye.mongodb.net/e-commerce?retryWrites=true&w=majority
+      MONGOOSE_SECONDS_TO_RETRY_CONNECTION: 5
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      APPLICATION_PORT: 3009
+      TZ: 'America/Sao_Paulo'
+
+    volumes:
+      - .:/app
+    ports:
+      - '3009:3009'
+    depends_on:
+      - mongo
+
+  tst:
+    <<: *base
+    command: /bin/ash -c "npm install --legacy-peer-deps && npm run test"
+    environment:
+      NODE_PATH: .
+      NODE_ENV: test
+      API_GDL_X_API_KEY: 'api-gdl-v4^Ku48%uctL'
+      DATABASE: dasa_test
+      DAYS_TO_EXPIRE_LOGS: 30
+      MONGO_DB_URI: mongodb://mongo:27017/api-gdl
+      MONGOOSE_SECONDS_TO_RETRY_CONNECTION: 5
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      APPLICATION_PORT: 80
+      SECRET_KEY_JWT: some-secret
+      TZ: 'America/Sao_Paulo'
+
+    volumes:
+      - .:/app
+    depends_on:
+      - mongo
+
+  lint:
+    <<: *base
+    command: /bin/ash -c "npm run lint"
+    volumes:
+      - .:/app
+
+  build:
+    <<: *base
+    command: /bin/ash -c "npm run build"
+    volumes:
+      - .:/app
