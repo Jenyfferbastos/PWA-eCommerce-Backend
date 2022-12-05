@@ -4,7 +4,7 @@
 ## Stack Used
 
 - `Programming Language`: Typescript
-- `Framework`: Routing-controllers e Express
+- `Framework`: Routing-controllers and Express
 - `DataBase`: MongoDB
 - `Library to manipulate the database`: Mongoose
 - `Dependency injection`: Inversify
