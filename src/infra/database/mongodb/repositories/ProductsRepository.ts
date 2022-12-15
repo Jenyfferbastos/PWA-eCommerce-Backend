@@ -1,41 +1,36 @@
 import { injectable } from 'inversify';
-import { ProductCategories } from '../interfaces/Product';
 
 import { ProductModel } from '../schemas/ProductSchema';
 
 @injectable()
 export class ProductsRepository {
-  async listProducts(categories: ProductCategories) {
-    const query = categories ? this.createCategoriesQuery(categories) : {};
+  async listProducts(category?: string, value?: string) {
+    const query = category ? this.createCategoriesQuery(category, value) : {};
     const products = await ProductModel.find(query);
     return JSON.stringify(products);
   }
 
-  private createCategoriesQuery(categories: ProductCategories) {
+  private createCategoriesQuery(category: string, value: string) {
     let query = {};
-    if (categories.color)
+    if (category === 'Color')
       query = {
-        'categories.color': categories.color,
+        'categories.color': value,
       };
-    else if (categories.length)
+    else if (category === 'Size')
       query = {
-        'categories.length': categories.length,
+        'categories.size': value,
       };
-    else if (categories.brand)
+    else if (category === 'Brand')
       query = {
-        'categories.brand': categories.brand,
+        'categories.brand': value,
       };
-    else if (categories.pricingBefore)
+    else if (category === 'Price Range')
       query = {
-        'categories.pricingBefore': { $lte: categories.pricingBefore },
+        'categories.pricingBefore': { $lte: value, $gte: value },
       };
-    else if (categories.discount)
+    else if (category === 'Discount')
       query = {
-        'categories.discount': { $gte: categories.discount },
-      };
-    else if (categories.rate)
-      query = {
-        'categories.rate': categories.rate,
+        'categories.discount': { $gte: value },
       };
 
     return query;

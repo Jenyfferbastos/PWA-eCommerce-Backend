@@ -30,7 +30,10 @@ export class ProductsController {
     params?: ListProductsBody,
   ) {
     try {
-      return await this.productsRepository.listProducts(params.categories);
+      return await this.productsRepository.listProducts(
+        params.category,
+        params.value,
+      );
     } catch (error) {
       return this.utils.handleResponse(error, res);
     }

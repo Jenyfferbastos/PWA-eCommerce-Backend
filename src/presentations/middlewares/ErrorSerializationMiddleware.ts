@@ -12,7 +12,6 @@ export class ErrorSerializationMiddleware
   implements ExpressErrorMiddlewareInterface
 {
   public error(error: any, _req: Request, res: Response, next: NextFunction) {
-    console.log(_req.body);
     if (error.errors?.length && error.httpCode === httpStatus.BAD_REQUEST) {
       return res.status(httpStatus.BAD_REQUEST).json(error.errors);
     }

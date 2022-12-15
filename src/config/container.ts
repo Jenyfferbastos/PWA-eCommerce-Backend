@@ -10,7 +10,6 @@ import { HandleAxiosError } from 'src/infra/helpers/HandleAxiosError';
 import { MongoDatabase } from 'src/infra/database/mongodb/Connection';
 import { ValidateEnvironments } from 'src/commons/utils/ValidateEnvironments';
 import { JwtServiceMapper } from 'src/infra/service/internal/jwt/mapper/JwtMapper';
-import { AuthorizationApiMiddleware } from 'src/presentations/middlewares/AuthorizationApiMiddleware';
 import { JwtInternalService } from 'src/infra/service/internal/jwt/JwtInternalService';
 import { ProductsRepository } from 'src/infra/database/mongodb/repositories/ProductsRepository';
 import { OrderRepository } from 'src/infra/database/mongodb/repositories/OrdersRepository';
@@ -33,7 +32,6 @@ container.bind(ValidateEnvironments).toSelf();
 //presentations
 container.bind(HttpServer).toSelf();
 container.bind(Utils).toSelf();
-container.bind(AuthorizationApiMiddleware).toSelf();
 container.bind(UserController).toSelf();
 container.bind(OrdersController).toSelf();
 container.bind(ProductsController).toSelf();

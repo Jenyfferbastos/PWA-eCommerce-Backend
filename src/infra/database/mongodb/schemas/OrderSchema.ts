@@ -10,7 +10,7 @@ const OrderSchema = new mongoose.Schema({
       pricingAfter: Number,
       discount: Number,
       categories: {
-        length: String,
+        size: String,
         color: String,
         brand: String,
         pricingBefore: Number,

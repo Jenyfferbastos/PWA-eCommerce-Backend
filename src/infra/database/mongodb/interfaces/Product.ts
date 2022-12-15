@@ -1,5 +1,5 @@
 export interface ProductCategories {
-  length?: string;
+  size?: string;
   color?: string;
   brand?: string;
   pricingBefore: number;
