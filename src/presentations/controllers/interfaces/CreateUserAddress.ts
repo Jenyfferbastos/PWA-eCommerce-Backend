@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator';
 
-export class CreateUserBody {
+export class CreateUserAddress {
   @IsString()
   street: string;
   @IsString()
@@ -15,8 +15,4 @@ export class CreateUserBody {
   phone: string;
   @IsString()
   phoneArea: string;
-  @IsString()
-  bornDate: string;
-  @IsString()
-  password: string;
 }

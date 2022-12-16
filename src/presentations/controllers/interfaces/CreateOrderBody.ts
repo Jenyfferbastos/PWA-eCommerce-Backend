@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 
 import { Product } from 'src/infra/database/mongodb/interfaces/Product';
-import { CreateUserBody } from './CreateUserBody';
+import { CreateUserAddress } from './CreateUserAddress';
 
 export class CreateOrderBody {
   @IsNumber()
@@ -17,11 +17,11 @@ export class CreateOrderBody {
   products: Product[];
   @IsOptional()
   @IsString()
-  userId?: string;
+  userId: string;
   @IsString()
   paymentMethod: string;
   @IsString()
   orderValue: string;
-  @Type(() => CreateUserBody)
-  userData: CreateUserBody;
+  @Type(() => CreateUserAddress)
+  userAddress: CreateUserAddress;
 }

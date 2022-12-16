@@ -36,12 +36,7 @@ export class OrdersController {
     @Body() body: CreateOrderBody,
   ) {
     try {
-      const newUser = await this.userRepository.createUser(body.userData);
-      delete body.userData;
-      return await this.orderRepository.createOrder({
-        ...body,
-        userId: newUser._id,
-      });
+      return await this.orderRepository.createOrder(body);
     } catch (error) {
       return this.utils.handleResponse(error, res);
     }

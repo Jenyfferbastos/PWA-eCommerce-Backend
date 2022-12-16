@@ -1,4 +1,5 @@
 import { Product } from './Product';
+import { UserAddress } from './UserAddress';
 
 export interface Order {
   quantity: number;
@@ -6,4 +7,5 @@ export interface Order {
   userId: string;
   paymentMethod: string;
   orderValue: string;
+  userAddress: UserAddress;
 }
