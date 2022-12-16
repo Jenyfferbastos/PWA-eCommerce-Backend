@@ -1,11 +1,11 @@
 import { injectable } from 'inversify';
 
-import { UserAddress } from '../interfaces/UserAddress';
+import { User } from '../interfaces/User';
 import { UserModel } from '../schemas/UserSchema';
 
 @injectable()
 export class UserRepository {
-  async createUser(user: UserAddress) {
+  async createUser(user: User) {
     const newUser = await UserModel.create(user);
     return JSON.parse(JSON.stringify(newUser));
   }

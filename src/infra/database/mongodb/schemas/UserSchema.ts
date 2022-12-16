@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-  street: String,
-  state: String,
-  city: String,
-  postalCode: String,
-  name: String,
+  firtName: String,
+  lastName: String,
+  email: String,
   phone: String,
-  phoneArea: String,
+  bornDate: String,
+  currentPassword: String,
+  password: String,
 });
 
 export const UserModel = mongoose.model('User', UserSchema);

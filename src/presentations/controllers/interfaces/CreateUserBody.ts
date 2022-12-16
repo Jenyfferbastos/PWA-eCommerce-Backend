@@ -2,21 +2,17 @@ import { IsString } from 'class-validator';
 
 export class CreateUserBody {
   @IsString()
-  street: string;
+  firtName: string;
   @IsString()
-  state: string;
+  lastName: string;
   @IsString()
-  city: string;
-  @IsString()
-  postalCode: string;
-  @IsString()
-  name: string;
+  email: string;
   @IsString()
   phone: string;
   @IsString()
-  phoneArea: string;
-  @IsString()
   bornDate: string;
+  @IsString()
+  currentPassword: string;
   @IsString()
   password: string;
 }
